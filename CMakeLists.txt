@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 1.2/ride.cpp)
+add_executable(test 1.2/beads.cpp)
 
-configure_file(1.2/ride.in . COPYONLY)
+configure_file(1.2/beads.in . COPYONLY)
