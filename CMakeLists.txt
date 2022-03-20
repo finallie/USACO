@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 1.3/dualpal.cpp)
+add_executable(test 1.4/barn1.cpp)
 
-configure_file(1.3/dualpal.in . COPYONLY)
+configure_file(1.4/barn1.in . COPYONLY)
