@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 1.4/crypt1.cpp)
+add_executable(test 1.4/combo.cpp)
 
-configure_file(1.4/crypt1.in . COPYONLY)
+configure_file(1.4/combo.in . COPYONLY)
