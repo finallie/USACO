@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 1.4/skidesign.cpp)
+add_executable(test 1.5/ariprog.cpp)
 
-configure_file(1.4/skidesign.in . COPYONLY)
+configure_file(1.5/ariprog.in . COPYONLY)
