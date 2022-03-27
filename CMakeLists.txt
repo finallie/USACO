@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 2.1/frac1.cpp)
+add_executable(test 2.1/sort3.cpp)
 
-configure_file(2.1/frac1.in . COPYONLY)
+configure_file(2.1/sort3.in . COPYONLY)
