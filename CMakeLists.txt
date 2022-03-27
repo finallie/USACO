@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 2.1/holstein.cpp)
+add_executable(test 2.1/hamming.cpp)
 
-configure_file(2.1/holstein.in . COPYONLY)
+configure_file(2.1/hamming.in . COPYONLY)
