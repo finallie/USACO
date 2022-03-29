@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 2.2/preface.cpp)
+add_executable(test 2.2/runround.cpp)
 
-configure_file(2.2/preface.in . COPYONLY)
+configure_file(2.2/runround.in . COPYONLY)
