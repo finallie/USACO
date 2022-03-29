@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 2.2/subset.cpp)
+add_executable(test 2.2/lamps.cpp)
 
-configure_file(2.2/subset.in . COPYONLY)
+configure_file(2.2/lamps.in . COPYONLY)
