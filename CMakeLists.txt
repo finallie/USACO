@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 2.3/zerosum.cpp)
+add_executable(test 2.3/money.cpp)
 
-configure_file(2.3/zerosum.in . COPYONLY)
+configure_file(2.3/money.in . COPYONLY)
