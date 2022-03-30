@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 2.3/prefix.cpp)
+add_executable(test 2.3/nocows.cpp)
 
-configure_file(2.3/prefix.in . COPYONLY)
+configure_file(2.3/nocows.in . COPYONLY)
