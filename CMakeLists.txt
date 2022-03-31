@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 2.3/money.cpp)
+add_executable(test 2.3/concom.cpp)
 
-configure_file(2.3/money.in . COPYONLY)
+configure_file(2.3/concom.in . COPYONLY)
