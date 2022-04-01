@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 2.4/comehome.cpp)
+add_executable(test 2.4/fracdec.cpp)
 
-configure_file(2.4/comehome.in . COPYONLY)
+configure_file(2.4/fracdec.in . COPYONLY)
