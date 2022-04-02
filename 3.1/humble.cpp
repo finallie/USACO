@@ -25,9 +25,8 @@ int main() {
     while (N--) {
         int num, i;
         tie(num, i) = pq.top();
-        fout << pq.top().first << endl;
         pq.pop();
-        for (int j = i; j < K && num * prime[j] <= INT_MAX; ++j) {
+        for (int j = K - 1; j >= i && num * prime[j] <= INT_MAX; --j) {
             pq.emplace(num * prime[j], j);
         }
     }
