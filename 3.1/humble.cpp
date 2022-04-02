@@ -8,10 +8,10 @@ LANG: C++
 using namespace std;
 
 ifstream fin("humble.in");
-ofstream fout("humble1.out");
+ofstream fout("humble.out");
 
 int K, N;
-unsigned long long prime[100];
+long long prime[100];
 
 int main() {
     fin >> K >> N;
@@ -19,7 +19,7 @@ int main() {
         fin >> prime[i];
     }
     sort(prime, prime + K, greater<>());
-    using Pair = pair<unsigned, int>;
+    using Pair = pair<int, int>;
     priority_queue<Pair, vector<Pair>, greater<>> pq;
     pq.emplace(1, 0);
     while (N--) {
