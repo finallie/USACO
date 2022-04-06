@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 3.2/fact4.cpp)
+add_executable(test 3.2/spin.cpp)
 
-configure_file(3.2/fact4.in . COPYONLY)
+configure_file(3.2/spin.in . COPYONLY)
