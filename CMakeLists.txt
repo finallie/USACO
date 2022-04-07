@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 3.2/ratios.cpp)
+add_executable(test 3.2/butter.cpp)
 
-configure_file(3.2/ratios.in . COPYONLY)
+configure_file(3.2/butter.in . COPYONLY)
