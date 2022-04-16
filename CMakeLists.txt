@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 3.3/shopping.cpp)
+add_executable(test 3.3/range.cpp)
 
-configure_file(3.3/shopping.in . COPYONLY)
+configure_file(3.3/range.in . COPYONLY)
