@@ -7,19 +7,19 @@ LANG: C++
 
 using namespace std;
 
-int R, C, kr, kc;
+int R, C, kr, kc, INF = INT_MAX / 2;
 using Knight = struct Knight {
     int r, c;
 };
 vector<Knight> knights;
-int dist[30][26][30][26];
+int kdist[30][26], in_quene[2][30][26], cost[2][30][26], sum[30][26], mn[30][26];
 int dir[8][2]{
-        {1, 2},
-        {1, -2},
+        {1,  2},
+        {1,  -2},
         {-1, 2},
         {-1, -2},
-        {2, 1},
-        {2, -1},
+        {2,  1},
+        {2,  -1},
         {-2, 1},
         {-2, -1},
 };
@@ -32,22 +32,33 @@ bool is_valid(int r, int c) {
     return r >= 0 && r < R && c >= 0 && c < C;
 }
 
-deque<pair<int, int>> q;
+deque<tuple<int, int, int>> q;
+
+void relax(int with_king, int r, int c, int d) {
+    if (cost[with_king][r][c] > d) {
+        cost[with_king][r][c] = d;
+        if (!in_quene[with_king][r][c]) {
+            in_quene[with_king][r][c] = 1;
+            q.emplace_back(with_king, r, c);
+        }
+    }
+}
 
 void bfs(int r, int c) {
-    dist[r][c][r][c] = 0;
-    q.emplace_back(r, c);
-    for (int d = 1; !q.empty(); ++d) {
-        for (size_t i = 0, size = q.size(); i < size; ++i) {
-            int cur_r, cur_c;
-            tie(cur_r, cur_c) = q.front();
-            q.pop_front();
-            for (int j = 0; j < 8; ++j) {
-                int new_r = cur_r + dir[j][0], new_c = cur_c + dir[j][1];
-                if (is_valid(new_r, new_c) && dist[r][c][new_r][new_c] == -1) {
-                    dist[r][c][new_r][new_c] = d;
-                    q.emplace_back(new_r, new_c);
-                }
+    fill_n((int *) cost, 2 * 30 * 26, INF);
+    relax(0, r, c, 0);
+    while (!q.empty()) {
+        int with_king;
+        tie(with_king, r, c) = q.front();
+        q.pop_front();
+        in_quene[with_king][r][c] = 0;
+        if (!with_king) {
+            relax(1, r, c, kdist[r][c] + cost[0][r][c]);
+        }
+        for (int i = 0; i < 8; ++i) {
+            int x = r + dir[i][0], y = c + dir[i][1];
+            if (is_valid(x, y)) {
+                relax(with_king, x, y, cost[with_king][r][c] + 1);
             }
         }
     }
@@ -63,36 +74,35 @@ int main() {
     fin >> R >> C >> c >> r;
     kc = c - 'A';
     kr = r - 1;
-    while (fin >> c >> r) {
-        knights.push_back({r - 1, c - 'A'});
+    for (int i = 0; i < R; ++i) {
+        for (int j = 0; j < C; ++j) {
+            kdist[i][j] = dist_to_king(i, j);
+        }
     }
-    if (knights.empty()) {
+    int knight_count = 0;
+    fill_n((int *) mn, 30 * 26, INF);
+    while (fin >> c >> r) {
+        ++knight_count;
+        bfs(r - 1, c - 'A');
+        for (int i = 0; i < R; ++i) {
+            for (int j = 0; j < C; ++j) {
+                if (sum[i][j] == INF || cost[0][i][j] == INF) {
+                    sum[i][j] = INF;
+                } else {
+                    sum[i][j] += cost[0][i][j];
+                }
+                mn[i][j] = min(mn[i][j], cost[1][i][j] - cost[0][i][j]);
+            }
+        }
+    }
+    if (!knight_count) {
         fout << 0 << endl;
         return 0;
     }
-
-    fill_n((int *) dist, sizeof(dist) / sizeof(int), -1);
-    for (int i = 0; i < R; ++i) {
-        for (int j = 0; j < C; ++j) {
-            bfs(i, j);
-        }
-    }
-
     int ans = INT_MAX;
     for (int i = 0; i < R; ++i) {
         for (int j = 0; j < C; ++j) {
-            int sum=0;
-            int mn = INT_MAX;
-            for (const auto &knight: knights) {
-                sum += dist[knight.r][knight.c][i][j];
-                for (int x = 0; x < R; ++x) {
-                    for (int y = 0; y < C; ++y) {
-                        mn = min(mn, dist[knight.r][knight.c][x][y] + dist[x][y][i][j] + dist_to_king(x, y) -
-                                     dist[knight.r][knight.c][i][j]);
-                    }
-                }
-            }
-            ans = min(ans, sum + mn);
+            ans = min(ans, sum[i][j] + mn[i][j]);
         }
     }
     fout << ans << endl;
