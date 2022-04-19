@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 3.4/heritage.cpp)
+add_executable(test 3.4/fence9.cpp)
 
-configure_file(3.4/heritage.in . COPYONLY)
+configure_file(3.4/fence9.in . COPYONLY)
