@@ -3,6 +3,6 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(test 4.2/ditch.cpp)
+add_executable(test 4.2/job.cpp)
 
-configure_file(4.2/ditch.in . COPYONLY)
+configure_file(4.2/job.in . COPYONLY)
