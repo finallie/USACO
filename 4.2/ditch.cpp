@@ -46,7 +46,6 @@ int main() {
     ofstream fout("ditch.out");
 
     fin >> N >> M;
-    int t = M;
     for (int i = 0, s, e, c; i < N; ++i) {
         fin >> s >> e >> c;
         graph[s][e] += c;
