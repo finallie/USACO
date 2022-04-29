@@ -49,17 +49,7 @@ int main() {
     int t = M;
     for (int i = 0, s, e, c; i < N; ++i) {
         fin >> s >> e >> c;
-        if (graph[e][s] == 0) {
-            graph[s][e] = c;
-        } else {
-            ++t;
-            graph[e][t] = graph[e][s];
-            graph[t][e] = c;
-            graph[s][t] = c;
-            graph[t][s] = graph[e][s];
-            graph[e].erase(s);
-            graph[s].erase(e);
-        }
+        graph[s][e] += c;
     }
 
     while (find_path()) {
